@@ -1,0 +1,57 @@
+CXX = g++
+
+CUDAXX = nvcc 
+
+CUDAFLAGS =  -x cu -arch=sm_20 -Xptxas -O1 -dc -lineinfo --expt-relaxed-constexpr
+
+CUDALFLAGS =  -arch=sm_20 -Xptxas -O1 -dlink --expt-relaxed-constexpr
+
+CXXFLAGS = -std=c++11 -g  
+
+LINKFLAGS = -std=c++11 -g
+
+LIBDIRS = -L$(NETCDFC_LIBDIR) -L$(CUDA_LIBDIR) -L$(HOME)/codes/lib
+
+LDFLAGS = -lnetcdf -lhdf5_hl -lhdf5 -lm -lz -ldl -lcuda -lcudart -lcudadevrt
+
+INCDIRS = -I$(HOME)/codes/include -I$(NETCDFC_INCDIR) -I$(CUDA_INCDIR) -I$(BOOSTINCLUDEDIR)
+
+
+CXX_SRCS = 	fland1_Ens.cpp			\
+		sacCudaCalls.cpp		\
+		uebDAsrPFcudacalls.cpp		\
+		uebDAsrPFuebdecls.cpp			\
+		uebDAsrPFsnowdv.cpp			\
+		uebDAsrPFsnowdgtv.cpp			\
+		uebDAsrPFcanopy.cpp			\
+		uebDAsrPFsnowxv.cpp			\
+		uebDAsrPFuebinputs.cpp			\
+		uebDAsrPFncfunctions.cpp		\
+		uebDAsrPFmatrixnvector.cpp
+
+OBJS = $(CXX_SRCS:.cpp=.o)
+
+DLINOBJ = uebDAPFGPU.o
+
+#TARGET = libuebGPU.a
+
+
+#$(TARGET) : $(DLINOBJ) 
+#	ar cru $(TARGET) $(DLINOBJ) $(OBJS)
+#	ranlib $(TARGET) 
+
+
+$(DLINOBJ) : $(OBJS) 
+	$(CUDAXX) $(CUDALFLAGS) $(LINKFLAGS) -o $(DLINOBJ) $(OBJS) $(LIBDIRS) $(LDFLAGS)
+
+
+%.o : %.cpp
+	$(CUDAXX) $(CUDAFLAGS) $(CXXFLAGS) $(INCDIRS) $< -o $@
+
+
+.PHONY: clean
+
+clean:
+	$(RM) $(OBJS) $(DLINOBJ) 
+
+#$(TARGET)
