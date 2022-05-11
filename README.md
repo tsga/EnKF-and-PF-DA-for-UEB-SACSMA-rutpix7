@@ -1,6 +1,3 @@
-# EnKF-and-PF-DA-for-UEB-SACSMA-rutpix7
-Code coupling the Utah Energy Balance (UEB) snowmelt model to the Sacramento Soil Moisture Accounting (Ssnow and streamflow data assimilation code 
-
 # EnKF-and-PF-DA-for-UEB-SACSMA-rutpix7 
 
 Data assimilation to three coupled (snowmelt, soil moisture accounting, and surface and streamflow routing) models. 
