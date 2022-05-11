@@ -12,6 +12,6 @@ These are based on National Weather Service's Office of Hydrologic Development (
 
 The code here first implements the UEB model as component of RDHM and SACSMA and rutpix7 are reconfigured to run on GPUs.   
 
-Programming languages: C++, CUDA   Requires: MPI, GPU (CUDA), NetCDF  
+Programming languages: C++, CUDA   Requires: MPI, GPU (CUDA), NetCDF, Eigen matrix library
 
 For more see the paper: Ensemble Streamflow Forecasting Using an Energy Balance Snowmelt Model Coupled to a Distributed Hydrologic Model with Assimilation of Snow and Streamflow Observations (https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019WR025472)
