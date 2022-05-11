@@ -1,4 +1,4 @@
-# EnKF-and-PF-DA-for-UEB-SACSMA-rutpix7 
+# EnKF and PF DA for Coupled UEB-SACSMA-rutpix7 Models in HL-RDHM 
 
 Data assimilation to three coupled (snowmelt, soil moisture accounting, and surface and streamflow routing) models. 
 
